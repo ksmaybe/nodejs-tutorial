@@ -1,9 +1,13 @@
 console.log('opening note.js');
 
-module.exports.addNote=function(){
-    console.log('addNote');
-    return 'New Note'
+var addNote= function(title,body){
+    console.log('Adding note',title,body)
 };
-module.exports.add= function(a,b){
-    return a+b;
+var getAll=function(){
+    console.log('Getting all notes');
 };
+var getNote=function(title){
+    console.log('Getting note',title);
+};
+
+module.exports={addNote,getAll,getNote};
