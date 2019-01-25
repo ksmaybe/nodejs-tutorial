@@ -9,5 +9,7 @@ var getAll=function(){
 var getNote=function(title){
     console.log('Getting note',title);
 };
-
-module.exports={addNote,getAll,getNote};
+var removeNote=function(title){
+  console.log('Removing note',title)
+};
+module.exports={addNote,getAll,getNote,removeNote};
