@@ -23,7 +23,9 @@ console.log('Yargs: ',argv);
 
 if (command==='add'){
     console.log('Adding new note');
-    notes.addNote(argv.title,argv.body);
+    var note=notes.addNote(argv.title,argv.body);
+    if (note){console.log('Note created');}
+    else{console.log('Note title taken');}
 }
 else if (command==='list'){
     console.log('Listing all notes');
@@ -38,4 +40,3 @@ else if (command==='remove'){
     notes.removeNote(argv.title);
 }
 else{console.log('Command not recognized');}
-
