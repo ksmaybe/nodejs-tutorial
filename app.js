@@ -1,42 +1,54 @@
-console.log('Starting app.js');
+const yargs=require('yargs');
+const chalk =require('chalk');
+const getNotes=require('./note.js');
 
-const fs = require('fs');
-const os = require('os');
-const _ = require('lodash');
-const yargs = require('yargs');
-const notes = require('./note.js');
 
-// console.log(_.isString(true));
-// console.log(_.isString('Andrew'));
-//
-// var filteredArray=_.uniq(['Mike']);
-// console.log(filteredArray);
-// var user=os.userInfo();
-// console.log(user);
-// fs.appendFileSync('greetings.txt',`sup bitches ${user.username} You are ${notes.age} !\n`);
-// console.log('Results: ',notes.add(9,-2));
-const argv=yargs.argv;
-var command =argv._[0];
-console.log('Command: ',command);
-console.log('Process: ',process.argv);
-console.log('Yargs: ',argv);
+// Create add command
+yargs.command({
+    command:'add',
+    describe:'Add a new note',
+    builder:{
+      title:{
+          describe:'Note title',
+          demandOption:true,
+          type:'string'
+      },
+      body:{
+          describe:'Note body',
+          demandOption: true,
+          type:'string'
+      }
+    },
+    handler: function(argv){
+        console.log('Title: '+argv.title)
+    }
+});
 
-if (command==='add'){
-    console.log('Adding new note');
-    var note=notes.addNote(argv.title,argv.body);
-    if (note){console.log('Note created');}
-    else{console.log('Note title taken');}
-}
-else if (command==='list'){
-    console.log('Listing all notes');
-    notes.getAll();
-}
-else if (command==='read'){
-    console.log('Reading note');
-    notes.getNote(argv.title);
-}
-else if (command==='remove'){
-    console.log('Removing note');
-    notes.removeNote(argv.title);
-}
-else{console.log('Command not recognized');}
+// Create remove command
+yargs.command({
+    command:'remove',
+    describe:'Remove a note',
+    handler: function(){
+        console.log('Removing the note!')
+    }
+});
+
+// Create list command
+yargs.command({
+    command:'list',
+    describe:'Listing all notes',
+    handler: function(){
+        console.log('Listing the note!')
+    }
+});
+
+// Create read command
+yargs.command({
+    command:'read',
+    describe:'Read a note',
+    handler:function(){
+        console.log('Reading the note!')
+    }
+});
+
+console.log(yargs.argv);
