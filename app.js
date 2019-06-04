@@ -40,7 +40,7 @@ yargs.command({
     handler: function(){
         console.log('Listing the note!')
     }
-});
+});;
 
 // Create read command
 yargs.command({
