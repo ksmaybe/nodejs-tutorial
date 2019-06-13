@@ -7,13 +7,19 @@ const getNotes=function(){
 
 function addNotes(title,body){
     const notes=loadNotes();
-    console.log(title,body);
-    notes.push({
+    const duplicateNotes = notes.filter(function(note){
+      return note.title=title;
+    });
+    if (duplicateNotes.length===0){notes.push({
         title: title,
         body: body
     });
     console.log(notes);
     saveNotes(notes);
+    }else{
+        console.log('Note title taken!')
+    }
+
 }
 
 const saveNotes = function(notes){
